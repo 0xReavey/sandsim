@@ -33,7 +33,6 @@ int main() {
     text.setOutlineColor(sf::Color::Black);
 
     auto lastSecond = steady_clock::now();
-    int frames = 0;
     std::chrono::duration<double> tickTime = 0s;
     std::chrono::duration<double> drawTime = 0s;
 
@@ -119,11 +118,10 @@ int main() {
         if (steady_clock::now() - lastSecond >= 1s) {
             std::cout << "----------------------------------\n";
             std::cout << "Particles = " << grid.m_sand.size() << '\n';
-            std::cout << "Fps = " << frames << '\n';
+            std::cout << "Fps = " << static_cast<int>(1 / dt) << '\n';
             std::cout << "Tick time = " << duration_cast<milliseconds>(tickTime) << '\n';
             std::cout << "Draw time = " << duration_cast<milliseconds>(drawTime) << '\n';
             lastSecond = steady_clock::now();
-            frames = 0;
             tickTime = 0s;
             drawTime = 0s;
         }
